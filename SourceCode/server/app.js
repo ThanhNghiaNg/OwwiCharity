@@ -4,6 +4,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 
+require('dotenv').config();
 const app = express();
 
 app.use(authRoutes);

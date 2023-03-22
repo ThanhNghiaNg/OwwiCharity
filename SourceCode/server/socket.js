@@ -3,8 +3,8 @@ let io;
 module.exports = {
   init: (httpServer) => {
     io = require("socket.io")(httpServer, {
-        cors: true,
-        method: 
+      cors: true,
+      method: ["PUT", "POST", "PATCH", "GET", "DELETE"],
     });
     return io;
   },
