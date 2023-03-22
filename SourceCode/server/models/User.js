@@ -6,8 +6,10 @@ const userSchema = Schema({
   password: { type: String, require: true },
   fullName: { type: String, require: true },
   email: { type: String, require: true },
-  phone: { type: Num, require: true },
-  address: { type: String, require: true },
+  phone: { type: String, require: true },
+  address: { type: String, require: false },
+  avatar: { type: String, require: false },
+  isAdmin: { type: Boolean, require: true },
 });
 
 module.exports = mongoose.model("User", userSchema);

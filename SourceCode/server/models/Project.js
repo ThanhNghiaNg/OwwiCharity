@@ -7,11 +7,11 @@ const projectSchema = Schema({
   longDesc: { type: String, require: true },
   story: { type: String, require: true },
   createDate: { type: Date, require: true },
-  EndDate: { type: Date, require: true },
-  FinishPercent: { type: Number, require: true },
-  TotalMoney: { type: Number, require: true },
-  TotalTrans: { type: Number, require: true },
-  ExpectedValue: { type: Number, require: true },
+  endDate: { type: Date, require: true },
+  finishPercent: { type: Number, require: true },
+  totalMoney: { type: Number, require: true },
+  totalTrans: { type: Number, require: true },
+  expectedMoney: { type: Number, require: true },
   imageURLs: { type: Object, require: true },
   partner: {type: Schema.Types.ObjectId, require: true, ref: "Partner"}
 });
