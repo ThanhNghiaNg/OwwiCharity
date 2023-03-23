@@ -1,4 +1,6 @@
-const authController = require("../controllers/auth")
+const authController = require("../controllers/auth");
+const isAuth = require("../middlewares/isAuthUser");
+const { body } = require("express-validator/check");
 const express = require("express");
 const router = express.Router();
 
@@ -18,10 +20,10 @@ router.post(
       }),
     body(
       "password",
-      "Password must not contain special characters and have at least 5 characters!"
+      "Password must not contain special characters and have at least 6 characters!"
     )
       .isAlphanumeric()
-      .isLength({ min: 5 }),
+      .isLength({ min: 6 }),
   ],
   authController.postLogin
 );

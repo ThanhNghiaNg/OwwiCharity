@@ -1,22 +1,20 @@
+const userController = require("../controllers/user");
 const express = require("express");
 const router = express.Router();
 
 // GET ALL USER
-router.get("/");
-
-// POST
-router.post("/create");
+router.get("/", userController.getAllUser);
 
 // GET USER INFOMATION
-router.get("/:id");
+router.get("/:id", userController.getUserInfomation);
 
 // UPDATE USER
-router.put("/:id");
+router.put("/:id", userController.updateInformtaion);
 
 // CHANGE USER PASSWORD
-router.put("/:id/password/change");
+router.put("/:id/password/change", userController.updatePassword);
 
 // BLOCK USER
-router.patch("/:id/block");
+router.patch("/:id/block", userController.blockAccount);
 
 module.exports = router;

@@ -42,7 +42,8 @@ exports.postLogin = (req, res, next) => {
     });
 };
 exports.postSignup = (req, res, next) => {
-  const { email, password, fullName, phone } = req.body;
+  const { username, password, fullName, email, phone, address, avatar } =
+    req.body;
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -52,12 +53,14 @@ exports.postSignup = (req, res, next) => {
     .hash(password, 12)
     .then((hashPassword) => {
       const newUser = new User({
+        username,
         email,
         fullName,
         password: hashPassword,
         phone,
-        role: "customer",
-        cart: { items: [], totalPrice: 0 },
+        address,
+        avatar,
+        isAdmin: false,
       });
       return newUser.save().then((user) => {
         return res.status(201).send({ message: "Sign-up Successfully!" });
