@@ -9,7 +9,7 @@ exports.getAllUser = async (req, res, next) => {
     const pageSize = req.query.pageSize ? req.query.pageSize : 5;
     const users = await User.find();
     const usersInfos = users.map((user) => {
-      const { password, cart, ...userInfo } = user._doc;
+      const { password, ...userInfo } = user._doc;
       return userInfo;
     });
     return res.send(getPagingResult(usersInfos, page, pageSize));
