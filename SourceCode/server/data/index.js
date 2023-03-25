@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const sampleData = require("./sample");
 const sampleNews = require("./news");
+
 const User = require("../models/User");
 const Partner = require("../models/Partner");
 const News = require("../models/News");
+const Project = require("../models/Project");
+
 require("dotenv").config();
 
 const importUserHandler = async () => {
@@ -28,7 +31,6 @@ const importUserHandler = async () => {
       console.log(`Imported User ${user.username}`);
     });
   }
-  console.log("Imported all User!");
 };
 
 const importPartnerHandler = async () => {
@@ -60,17 +62,29 @@ const importPartnerHandler = async () => {
       });
     }
   });
-  console.log("Imported all Partner!");
 };
 
 const importNewsHandler = async () => {
   sampleNews.map(async (news, i) => {
     const data = news.Data;
-    let partnerName = "";
-    let sponsorName = "";
-    let locationName = "";
+    let sponsorName = "Trung tâm Tình nguyện Quốc gia";
+    let locationName = "Cao Bằng";
+    let partner;
     try {
-      partnerName = data.Content.split(
+      locationName = data.Content.split(
+        "Địa điểm hỗ trợ:\u003c/strong\u003e"
+      )[1]
+        .split("\n\u003c/p\u003e\n\n\u003cp\u003e")[0]
+        .trim();
+    } catch (err) {}
+
+    try {
+      sponsorName = data.Content.split("Nhà tài trợ:\u003c/strong\u003e")[1]
+        .split("\n\u003c/p\u003e\n\n\u003cp\u003e")[0]
+        .trim();
+    } catch (err) {}
+    try {
+      const partnerName = data.Content.split(
         "Đơn vị triển khai:\u003c/strong\u003e \u003ca href="
       )[1]
         .split(
@@ -78,29 +92,15 @@ const importNewsHandler = async () => {
         )[0]
         .split(">")[1]
         .trim();
+      partner = await Partner.findOne({
+        name: { $regex: new RegExp("^" + partnerName + "$", "i") },
+      });
     } catch (err) {
-      const partners = await Partner.find();
-      const random = Math.trunc(Math.random() * partners.length);
-      partnerName = partners.map((partner) => partner._doc.name)[random];
+      partner = await Partner.findOne({ name: "Quỹ Hy Vọng" });
     }
-    
-    const partner = await Partner.findOne({ name: partnerName });
     if (partner) {
-      try {
-        locationName = data.Content.split(
-          "Địa điểm hỗ trợ:\u003c/strong\u003e"
-        )[1]
-          .split("\n\u003c/p\u003e\n\n\u003cp\u003e")[0]
-          .trim();
-      } catch (err) {}
-      try {
-        sponsorName = data.Content.split("Nhà tài trợ:\u003c/strong\u003e")[1]
-          .split("\n\u003c/p\u003e\n\n\u003cp\u003e")[0]
-          .trim();
-      } catch (err) {}
-      
-      console.log(`${i}: ${sponsorName}`);
-      const news = await new News({
+      console.log(i);
+      const news = new News({
         title: `${data.Title}`,
         shortDesc: `${data.Short}`,
         content: `${data.Content}`,
@@ -109,21 +109,34 @@ const importNewsHandler = async () => {
         sponsor: sponsorName,
         partner: partner._id,
       });
-      await news.save().then((news) => {
-        console.log(news.sponsor);
-      });
+      news.save().then((news) => {});
     }
   });
 };
 
-const importProjectHandler = async () => {};
+const importProjectHandler = async () => {
+  const project = new Project({
+    title: "",
+    shortDesc: "",
+    longDesc: "",
+    story: "",
+    startDate: "",
+    endDate: "",
+    finishPercent: "",
+    totalMoney: "",
+    totalTrans: "",
+    expectedMoney: "",
+    imageURLs: "",
+    partner: "",
+  })
+};
 
 const importDataHandler = async () => {
   console.log("Importing Data...");
   await importUserHandler();
   await importPartnerHandler();
   await importNewsHandler();
-  console.log("Imported Data Successfully");
+  await importProjectHandler();
 };
 
 mongoose.connect(process.env.MONGO_URI, importDataHandler);
