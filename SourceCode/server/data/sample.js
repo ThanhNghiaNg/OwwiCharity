@@ -1,4 +1,4 @@
-const sample = {
+module.exports = {
   pageMaster: {
     Result: true,
     Data: {
