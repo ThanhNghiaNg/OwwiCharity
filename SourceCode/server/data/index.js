@@ -2,13 +2,37 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const sampleData = require("./sample");
 const sampleNews = require("./news");
+const sampleProjects = require("./projects");
 
 const User = require("../models/User");
 const Partner = require("../models/Partner");
 const News = require("../models/News");
 const Project = require("../models/Project");
+const Category = require("../models/Category");
+const Transaction = require("../models/Transaction");
 
 require("dotenv").config();
+
+const categories = [
+  "vì trẻ em",
+  "người già, người khuyết tật",
+  "bệnh hiểm nghèo",
+  "hoàn cảnh khó khăn",
+  "hỗ trợ giáo dục",
+  "đầu tư cơ sở vật chất",
+  "bảo vệ môi trường",
+  "cứu trợ động vật",
+];
+
+const importCategoryHander = async () => {
+  categories.map(async (item, i) => {
+    const existCategopry = await Category.findOne({ name: item });
+    if (!existCategopry) {
+      const category = await new Category({ name: item });
+      await category.save();
+    }
+  });
+};
 
 const importUserHandler = async () => {
   for (let i = 0; i < 20; i++) {
@@ -34,7 +58,6 @@ const importUserHandler = async () => {
 };
 
 const importPartnerHandler = async () => {
-  // console.log(sampleData.pageProps.dataServiceBlocks.Data[7].Data.Items);
   const partners = sampleData.pageProps.dataServiceBlocks.Data[7].Data.Items;
   partners.forEach(async (item) => {
     const partnerExist = await Partner.findOne({ name: item.Title });
@@ -99,7 +122,6 @@ const importNewsHandler = async () => {
       partner = await Partner.findOne({ name: "Quỹ Hy Vọng" });
     }
     if (partner) {
-      console.log(i);
       const news = new News({
         title: `${data.Title}`,
         shortDesc: `${data.Short}`,
@@ -115,28 +137,78 @@ const importNewsHandler = async () => {
 };
 
 const importProjectHandler = async () => {
-  const project = new Project({
-    title: "",
-    shortDesc: "",
-    longDesc: "",
-    story: "",
-    startDate: "",
-    endDate: "",
-    finishPercent: "",
-    totalMoney: "",
-    totalTrans: "",
-    expectedMoney: "",
-    imageURLs: "",
-    partner: "",
-  })
+  sampleProjects.map(async (data, i) => {
+    const project = data.pageProps.dataDetail.Data;
+    const images = project.Album.map((item) => {
+      return {
+        name: item.Name,
+        url: item.AvatarUrl,
+        description: item.Description,
+      };
+    });
+
+    const categoryName =
+      categories[Math.trunc(Math.random() * categories.length)];
+    const category = await Category.findOne({ name: categoryName });
+
+    let partner;
+    partner = await Partner.findOne({
+      name: { $regex: new RegExp("^" + project.CategoryName + "$", "i") },
+    });
+    if (!partner) {
+      partner = await Partner.findOne({ name: "Sức mạnh 2000" });
+    }
+
+    const newProject = await new Project({
+      title: `${project.Title}`,
+      category: category._id,
+      shortDesc: `${project.Short}`,
+      story: `${project.Content}`,
+      startDate: new Date(),
+      endDate: new Date(new Date().getTime() + 60 * 24 * 60 * 60 * 1000),
+      finishPercent: 0,
+      totalMoney: 0,
+      totalTrans: 0,
+      expectedMoney: Number(project.ExpectedValueFormat.replace(".", "")),
+      images: images,
+      partner: partner._id,
+    });
+    await newProject.save();
+  });
+};
+
+const importTransactionHandler = async () => {
+  for (let i = 0; i < 15; i++) {
+    const randomProjectNum = Math.trunc(Math.random() * 17);
+    const randomUserNum = Math.trunc(Math.random() * 20);
+    const user = await User.findOne({ username: `user000${randomUserNum}` });
+    const projects = await Project.find();
+    const project = projects[randomProjectNum];
+
+    const transaction = await new Transaction({
+      user: user._id,
+      project: project._id,
+      amount: 0,
+      message: "",
+    });
+    await transaction.save();
+  }
 };
 
 const importDataHandler = async () => {
   console.log("Importing Data...");
-  await importUserHandler();
-  await importPartnerHandler();
-  await importNewsHandler();
-  await importProjectHandler();
+  Promise.all([
+    [
+      importCategoryHander(),
+      importUserHandler(),
+      importPartnerHandler(),
+      importNewsHandler(),
+      importProjectHandler(),
+      importTransactionHandler(),
+    ],
+  ]).then(() => {
+    console.log("Import Data Successfully");
+  });
 };
 
 mongoose.connect(process.env.MONGO_URI, importDataHandler);

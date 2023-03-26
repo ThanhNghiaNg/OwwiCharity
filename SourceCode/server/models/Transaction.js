@@ -5,9 +5,8 @@ const transactionSchema = Schema(
   {
     user: { type: Schema.Types.ObjectId, require: true, ref: "User" },
     project: { type: Schema.Types.ObjectId, require: true, ref: "Project" },
-    amount: { type: Number, require: true, ref: "Project" },
+    amount: { type: Number, require: true },
     message: { type: String, require: false },
-    status: { type: String, require: true },
   },
   { timestamps: true }
 );
