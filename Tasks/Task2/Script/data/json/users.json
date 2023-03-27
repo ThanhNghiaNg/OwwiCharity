@@ -1,0 +1,274 @@
+[{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe25"
+  },
+  "username": "user0000",
+  "password": "$2a$12$OjaO1tuCm0vt94UfZvMDoeA2aH6hbHDHQzdIT.5BD9GmbYWWP6.Am",
+  "fullName": "User 00",
+  "email": "user0000@gmail.com",
+  "phone": "01219017300",
+  "address": "240/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac949ef6594310af85e8"
+  },
+  "username": "user0001",
+  "password": "$2a$12$B7ARdJrHKm/gw0CSc81/Q.pU0jkWC0sSheMstY4mIN1DPB10g1EQG",
+  "fullName": "User 01",
+  "email": "user0001@gmail.com",
+  "phone": "01219017301",
+  "address": "241/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad018361b12b6cab5cf6"
+  },
+  "username": "user0002",
+  "password": "$2a$12$1hIVTnjEhIQdpna2AUa74OLQFybZkCUm/vcMJq6ceIMb6zxytNlYu",
+  "fullName": "User 02",
+  "email": "user0002@gmail.com",
+  "phone": "01219017302",
+  "address": "242/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad028361b12b6cab5cf9"
+  },
+  "username": "user0003",
+  "password": "$2a$12$nahH2trxzwry.WHQg.cipeI0w9klT5zYPgWpcJSp34uZJw/V2GsUC",
+  "fullName": "User 03",
+  "email": "user0003@gmail.com",
+  "phone": "01219017303",
+  "address": "243/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad028361b12b6cab5cfc"
+  },
+  "username": "user0004",
+  "password": "$2a$12$ubsG7S3xt3WsdMcbHXw.L.MP9vkr9DnxROwt2XRGU/hcTee12oZsq",
+  "fullName": "User 04",
+  "email": "user0004@gmail.com",
+  "phone": "01219017304",
+  "address": "244/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad028361b12b6cab5cff"
+  },
+  "username": "user0005",
+  "password": "$2a$12$S5nCgyq9aK72xeLDAi688.yZ8txRzd1MPTO3x7UzHeHwfuzY7CNC.",
+  "fullName": "User 05",
+  "email": "user0005@gmail.com",
+  "phone": "01219017305",
+  "address": "245/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad038361b12b6cab5d02"
+  },
+  "username": "user0006",
+  "password": "$2a$12$OCRXUxMLYsHhR.Muei4FuegG.sk5rhTP77u2LPGo/cdhfWp99peV6",
+  "fullName": "User 06",
+  "email": "user0006@gmail.com",
+  "phone": "01219017306",
+  "address": "246/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad038361b12b6cab5d05"
+  },
+  "username": "user0007",
+  "password": "$2a$12$4EsMViCPzKFpEz.cDuasJ.TxbHbWhqSeo7i11RwdQT1ltUQuQm85.",
+  "fullName": "User 07",
+  "email": "user0007@gmail.com",
+  "phone": "01219017307",
+  "address": "247/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad048361b12b6cab5d08"
+  },
+  "username": "user0008",
+  "password": "$2a$12$pGH7mHvWnu0kRjlaCPLhE.gUv/Pd/Elk0au6nDSfuMRqNE38KHz0a",
+  "fullName": "User 08",
+  "email": "user0008@gmail.com",
+  "phone": "01219017308",
+  "address": "248/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad048361b12b6cab5d0b"
+  },
+  "username": "user0009",
+  "password": "$2a$12$EABDBcbAEcyrt9byrbiI0Op56skopbkqwBzh0wjcxXysMfUa.78pa",
+  "fullName": "User 09",
+  "email": "user0009@gmail.com",
+  "phone": "01219017309",
+  "address": "249/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad048361b12b6cab5d0e"
+  },
+  "username": "user00010",
+  "password": "$2a$12$VQ9blCm0WTt2JXoOL/3/LO7H1kkArdIn0e/WdyYnlDufu4w81zWG6",
+  "fullName": "User 010",
+  "email": "user00010@gmail.com",
+  "phone": "012190173010",
+  "address": "2410/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad058361b12b6cab5d11"
+  },
+  "username": "user00011",
+  "password": "$2a$12$74zse2iC/2pfOFwVkVQR4.jeJgdxn5E9JbEm/hI1R9M4IlhlkFfYa",
+  "fullName": "User 011",
+  "email": "user00011@gmail.com",
+  "phone": "012190173011",
+  "address": "2411/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad058361b12b6cab5d14"
+  },
+  "username": "user00012",
+  "password": "$2a$12$7VkWEzk94p96YOmViwYHUezoSWDPnuMzO.7Wo6iIyoQU7mUhZxXDC",
+  "fullName": "User 012",
+  "email": "user00012@gmail.com",
+  "phone": "012190173012",
+  "address": "2412/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad068361b12b6cab5d17"
+  },
+  "username": "user00013",
+  "password": "$2a$12$YaR/mce/LCTBgAp5.eBeEecFDTHrYOHgTDvpgINhPBeKn0a/heJmS",
+  "fullName": "User 013",
+  "email": "user00013@gmail.com",
+  "phone": "012190173013",
+  "address": "2413/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad068361b12b6cab5d1a"
+  },
+  "username": "user00014",
+  "password": "$2a$12$WqzeP/GQ8d10lGRYNCQbneKgqlVMfysTIAL5tV2E3O.vG56WfRZSa",
+  "fullName": "User 014",
+  "email": "user00014@gmail.com",
+  "phone": "012190173014",
+  "address": "2414/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad078361b12b6cab5d1d"
+  },
+  "username": "user00015",
+  "password": "$2a$12$Bm2NsqfRQvfaPxtG9WsUWeTzZM2CM0f8R0ve8EQbiOrHNyAMdU7Ti",
+  "fullName": "User 015",
+  "email": "user00015@gmail.com",
+  "phone": "012190173015",
+  "address": "2415/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad078361b12b6cab5d20"
+  },
+  "username": "user00016",
+  "password": "$2a$12$r9qLkJPW/73Fv9hmwgAtSufBTfIhxxQGwlanFAM8Q7gdaK.yQ4Wpu",
+  "fullName": "User 016",
+  "email": "user00016@gmail.com",
+  "phone": "012190173016",
+  "address": "2416/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad088361b12b6cab5d23"
+  },
+  "username": "user00017",
+  "password": "$2a$12$NFfKhqT/MNP75vW.dpcqH.BoU3V5Rg.lK8UFh4T9/k2DcUCyQ.ETa",
+  "fullName": "User 017",
+  "email": "user00017@gmail.com",
+  "phone": "012190173017",
+  "address": "2417/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad088361b12b6cab5d26"
+  },
+  "username": "user00018",
+  "password": "$2a$12$Fw0/glDVo84ZJ8mpWukkh.F35CWDZLt5RTUQTphFa6XM85DooKm1i",
+  "fullName": "User 018",
+  "email": "user00018@gmail.com",
+  "phone": "012190173018",
+  "address": "2418/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad088361b12b6cab5d29"
+  },
+  "username": "user00019",
+  "password": "$2a$12$2W5lemxidtAjBf7o5xfnD.fcwvQD9poz8N/DgBn2dT7385RJK0dPO",
+  "fullName": "User 019",
+  "email": "user00019@gmail.com",
+  "phone": "012190173019",
+  "address": "2419/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ad098361b12b6cab5d2c"
+  },
+  "username": "user00020",
+  "password": "$2a$12$JlKX97WPtT9zviyzD8SjWO3nsUVU4hWUlnYLQLKXjaEsKy9Xv8aFG",
+  "fullName": "User 020",
+  "email": "user00020@gmail.com",
+  "phone": "012190173020",
+  "address": "2420/7 Tỉnh lộ 768, Vĩnh Cửu Đồng Nai",
+  "avatar": "",
+  "isAdmin": false,
+  "__v": 0
+}]

@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "6421ac1263128d35fc6bbe17"
+  },
+  "name": "người già, người khuyết tật",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe1b"
+  },
+  "name": "đầu tư cơ sở vật chất",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1263128d35fc6bbe13"
+  },
+  "name": "vì trẻ em",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe21"
+  },
+  "name": "cứu trợ động vật",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe19"
+  },
+  "name": "hoàn cảnh khó khăn",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe1d"
+  },
+  "name": "hỗ trợ giáo dục",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1263128d35fc6bbe15"
+  },
+  "name": "bệnh hiểm nghèo",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6421ac1363128d35fc6bbe1f"
+  },
+  "name": "bảo vệ môi trường",
+  "__v": 0
+}]

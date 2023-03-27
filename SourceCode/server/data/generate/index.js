@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const sampleData = require("./sample");
-const sampleNews = require("./news");
-const sampleProjects = require("./projects");
+const sampleData = require("../generate/sample");
+const sampleNews = require("../generate/news");
+const sampleProjects = require("../generate/projects");
 
-const User = require("../models/User");
-const Partner = require("../models/Partner");
-const News = require("../models/News");
-const Project = require("../models/Project");
-const Category = require("../models/Category");
-const Transaction = require("../models/Transaction");
+const User = require("../../models/User");
+const Partner = require("../../models/Partner");
+const News = require("../../models/News");
+const Project = require("../../models/Project");
+const Category = require("../../models/Category");
+const Transaction = require("../../models/Transaction");
 
 require("dotenv").config();
 
@@ -35,7 +35,7 @@ const importCategoryHander = async () => {
 };
 
 const importUserHandler = async () => {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i <= 20; i++) {
     const userExist = await User.findOne({ username: `user000${i}` });
     if (userExist) {
       continue;
@@ -146,7 +146,7 @@ const importProjectHandler = async () => {
         description: item.Description,
       };
     });
-
+    console.log(images);
     const categoryName =
       categories[Math.trunc(Math.random() * categories.length)];
     const category = await Category.findOne({ name: categoryName });
@@ -170,7 +170,7 @@ const importProjectHandler = async () => {
       totalMoney: 0,
       totalTrans: 0,
       expectedMoney: Number(project.ExpectedValueFormat.replace(".", "")),
-      images: images,
+      images: [...images],
       partner: partner._id,
     });
     await newProject.save();
@@ -179,10 +179,13 @@ const importProjectHandler = async () => {
 
 const importTransactionHandler = async () => {
   for (let i = 0; i < 15; i++) {
-    const randomProjectNum = Math.trunc(Math.random() * 17);
-    const randomUserNum = Math.trunc(Math.random() * 20);
-    const user = await User.findOne({ username: `user000${randomUserNum}` });
     const projects = await Project.find();
+    const randomProjectNum = Math.trunc(Math.random() * projects.length);
+    const randomUserNum = Math.trunc(Math.random() * 20);
+    console.log(`user000${randomUserNum}`);
+    const user = await User.findOne({ username: `user000${randomUserNum}` });
+    console.log(user);
+    console.log(projects.length, randomProjectNum);
     const project = projects[randomProjectNum];
 
     const transaction = await new Transaction({
@@ -195,20 +198,20 @@ const importTransactionHandler = async () => {
   }
 };
 
-const importDataHandler = async () => {
+const generateImportDataHandler = async () => {
   console.log("Importing Data...");
   Promise.all([
     [
-      importCategoryHander(),
-      importUserHandler(),
-      importPartnerHandler(),
-      importNewsHandler(),
-      importProjectHandler(),
-      importTransactionHandler(),
+      await importCategoryHander(),
+      await importUserHandler(),
+      await importPartnerHandler(),
+      await importNewsHandler(),
+      await importProjectHandler(),
+      await importTransactionHandler(),
     ],
   ]).then(() => {
     console.log("Import Data Successfully");
   });
 };
 
-mongoose.connect(process.env.MONGO_URI, importDataHandler);
+mongoose.connect(process.env.MONGO_URI, generateImportDataHandler);
