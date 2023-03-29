@@ -1,0 +1,20 @@
+.image__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.image__item input {
+  width: 100% !important;
+}
+.image__item input {
+  width: fit-content;
+}
+
+.image__item__button-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+}

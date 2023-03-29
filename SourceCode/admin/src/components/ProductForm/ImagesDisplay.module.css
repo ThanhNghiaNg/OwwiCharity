@@ -14,15 +14,4 @@
   list-style: none;
 }
 
-.image__item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
 
-.image__item input {
-  width: 100%!important;
-}
-.image__item input {
-  width: fit-content;
-}

@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import useHttp from "../../hooks/useHttp";
 import ImagesDisplay from "./ImagesDisplay";
 import classes from "./ProductForm.module.css";
 
@@ -8,16 +9,42 @@ function ProductForm(props) {
   const isEdit = props.isEdit;
   const inputImageRef = useRef();
   const [images, setImages] = useState([]);
+  const {
+    sendRequest: getPartners,
+    isLoading: isLoadingPartners,
+    cancelRequest: cancelGetPartners,
+  } = useHttp();
+  const {
+    sendRequest: getCategories,
+    isLoading: isLoadingCategories,
+    cancelRequest: cancelGetCategories,
+  } = useHttp();
+
+  const removeImageHandler = (index) => {
+    setImages((prev) => prev.filter((img, i) => i !== index));
+  };
+  useEffect(() => {}, []);
+  const updateImageHandler = (index, name, description) => {
+    setImages((prev) => {
+      prev[index].name = name;
+      prev[index].description = description;
+      return [...prev];
+    });
+  };
 
   const onAddImageHandler = (event) => {
     const selectedFile = event.target.files[0];
     console.log(selectedFile);
-    setImages((prev) => [...prev, selectedFile]);
+    setImages((prev) => [
+      ...prev,
+      { image: selectedFile, name: "", description: "" },
+    ]);
   };
 
   const openChooseFileHandler = () => {
     inputImageRef.current.click();
   };
+
   function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -128,7 +155,11 @@ function ProductForm(props) {
           onChange={onAddImageHandler}
         ></Form.Control>
       </Form.Group>
-      <ImagesDisplay images={images} />
+      <ImagesDisplay
+        images={images}
+        onRemove={removeImageHandler}
+        onUpdate={updateImageHandler}
+      />
 
       <div className="text-center mt-4">
         <Button variant="primary" type="submit">
