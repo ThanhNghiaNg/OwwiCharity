@@ -1,0 +1,28 @@
+.images__list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.8rem;
+  padding: 0;
+}
+
+.images__list img {
+  width: 100%;
+  height: 100%;
+}
+
+.images__list li {
+  list-style: none;
+}
+
+.image__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image__item input {
+  width: 100%!important;
+}
+.image__item input {
+  width: fit-content;
+}
