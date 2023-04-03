@@ -1,17 +1,35 @@
 import { Route } from "react-router-dom";
-import CreateProduct from "../pages/CreateProduct";
-import UpdateProduct from "../pages/UpdateProdudct";
+import Projects from "../pages/Projects";
+import CreateProject from "../pages/CreateProject";
+import UpdateProject from "../pages/UpdateProject";
+import Users from "../pages/Users";
+import Transactions from "../pages/Transactions";
 
 const items = [
   {
-    path: "/product/create",
-    element:<CreateProduct />,
-    name: "Create Product",
+    path: "/project/create",
+    element: <CreateProject />,
+    name: "Create Project",
   },
   {
-    path: "/product/edit/:id",
-    element: <UpdateProduct />,
-    name: "Edit Product",
+    path: "/project/edit/:id",
+    element: <UpdateProject />,
+    name: "Edit Project",
+  },
+  {
+    path: "/projects",
+    element: <Projects />,
+    name: "Projects",
+  },
+  {
+    path: "/transactions",
+    element: <Transactions />,
+    name: "Transactions",
+  },
+  {
+    path: "/users",
+    element: <Users />,
+    name: "Users",
   },
   { path: "*", element: <p>test</p>, name: "other" },
 ];

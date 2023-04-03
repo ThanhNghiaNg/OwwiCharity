@@ -1,0 +1,24 @@
+Done - Admin: Table components
+Done - Admin: Users list (xoá)
+
+Admin: Transaction List (sửa)
+Admin: News List (thêm - xoá - sửa)
+Admin: Category List (thêm - xoá - sửa)
+Admin: Dashboard
+    ...
+    Số lượng giao dịch trong tháng
+    Số lượng người đăng ký mới
+Admin: Chat
+
+Customer: Login 
+Customer: Register
+Customer: Home
+Customer: Project Detail
+Customer: News Modal
+Customer: User 
+Customer: Chat
+Customer: Payment
+
+Server: delete image when project delete or when remove image at update image project
+Admin: Users list (block, unblock)
+Warning when delete && Notify when deleted

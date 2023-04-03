@@ -13,6 +13,7 @@ function ImagesDisplay(props) {
         index={i}
         item={item}
         key={i}
+        hasURL={props.hasURL}
       />
     );
   });

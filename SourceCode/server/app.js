@@ -1,4 +1,5 @@
 const cors = require("cors");
+const bodyParser = require("body-parser");
 const multer = require("multer");
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -38,7 +39,8 @@ const store = new MongoDBStore({
 });
 
 const app = express();
-
+app.use(express.static(__dirname));
+app.use(bodyParser.json());
 // DEVELOP
 app.use(
   cors({

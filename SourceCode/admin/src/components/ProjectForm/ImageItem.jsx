@@ -7,6 +7,7 @@ function ImageItem(props) {
   const { item, index } = props;
   const nameRef = useRef();
   const descRef = useRef();
+  const itEdit = props.hasURL;
 
   const changeHandler = () => {
     props.onUpdate(index, nameRef.current.value, descRef.current.value);
@@ -15,15 +16,29 @@ function ImageItem(props) {
   const removeHandler = () => {
     props.onRemove(index);
   };
+  let imgSrc;
+  try {
+    imgSrc = URL.createObjectURL(item.image);
+  } catch (err) {
+    imgSrc = item.url
+  }
   return (
     <li className={classes.image__item} onChange={changeHandler}>
       <Button
         className={`btn btn-close ${classes["image__item__button-close"]}`}
         onClick={removeHandler}
       ></Button>
-      <img src={URL.createObjectURL(item.image)} />
-      <Form.Control placeholder="Name" ref={nameRef} />
-      <Form.Control placeholder="Description" ref={descRef} />
+      <img src={imgSrc} />
+      <Form.Control
+        placeholder="Name"
+        ref={nameRef}
+        defaultValue={itEdit ? item.name : ""}
+      />
+      <Form.Control
+        placeholder="Description"
+        ref={descRef}
+        defaultValue={itEdit ? item.description : ""}
+      />
     </li>
   );
 }

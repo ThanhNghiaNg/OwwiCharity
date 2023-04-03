@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function useHttp() {
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const controller = new AbortController();
 
@@ -25,10 +26,15 @@ function useHttp() {
 
       if (respone.status >= 200 && respone.status < 300) {
         if (callback) {
+          if (data.message) {
+            setSuccess(data.message);
+          }
           callback(data);
         }
       } else {
-        setError(data.message);
+        if (data.message) {
+          setError(data.message);
+        }
       }
       setIsLoading(false);
     } catch (err) {
@@ -44,6 +50,8 @@ function useHttp() {
   return {
     error,
     setError,
+    success,
+    setSuccess,
     isLoading,
     sendRequest,
     cancelRequest,

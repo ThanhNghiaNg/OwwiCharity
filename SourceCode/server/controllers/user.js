@@ -1,18 +1,23 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator/check");
-const { getPagingResult } = require("../utils/global");
 
 exports.getAllUser = async (req, res, next) => {
   try {
-    const page = req.query.page ? req.query.page : 1;
-    const pageSize = req.query.pageSize ? req.query.pageSize : 5;
+    const query = req.query.q.toLowerCase();
     const users = await User.find();
-    const usersInfos = users.map((user) => {
-      const { password, ...userInfo } = user._doc;
-      return userInfo;
-    });
-    return res.send(getPagingResult(usersInfos, page, pageSize));
+    const usersInfos = users
+      .map((user) => {
+        const { password, ...userInfo } = user._doc;
+        return userInfo;
+      })
+      .filter(
+        (user) =>
+          user._id.toString().includes(query) ||
+          user.username.toLowerCase().includes(query) ||
+          user.email.toLowerCase().includes(query)
+      );
+    return res.send(usersInfos);
   } catch (err) {
     console.log(err);
   }

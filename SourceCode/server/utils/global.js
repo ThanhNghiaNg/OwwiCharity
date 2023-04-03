@@ -2,6 +2,10 @@ exports.addStyleCurrency = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VNĐ";
 };
 
+exports.localeStrToDate = (str)=>{
+  return new Date(str)
+}
+
 exports.getPagingResult = (result, page = 1, pageSize = 10) => {
   const numResult = result.length;
   const maxPage = Math.ceil(numResult / pageSize);
