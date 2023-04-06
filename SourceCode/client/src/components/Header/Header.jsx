@@ -25,6 +25,9 @@ function Header() {
             <Nav.Link as={Link} to="/projects">
               Các dự án quyên góp
             </Nav.Link>
+            <Nav.Link as={Link} to="/news">
+              Tin tức cộng đồng
+            </Nav.Link>
             {!isLoggedIn && (
               <Nav.Link as={Link} to="/login">
                 <button className="btn btn-primary">Đăng nhập</button>

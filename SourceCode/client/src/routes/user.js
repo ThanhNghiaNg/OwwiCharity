@@ -6,10 +6,13 @@ const routes = [
     path: "/",
     element: <Home/>,
   },
+  {
+path:"/login",
+  }
 ];
 
 const  userRoutes = routes.map((route) => (
-  <Route key={new Date().getTime()} path={route.path} element={route.element} />
+  <Route key={route.path} path={route.path} element={route.element} />
 ));
 
 export default userRoutes
