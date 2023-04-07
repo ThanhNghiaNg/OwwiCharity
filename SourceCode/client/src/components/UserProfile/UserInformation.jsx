@@ -1,6 +1,8 @@
+
+
 import React from 'react';
 
-function News(props) {
+function UserInformation(props) {
     return (
         <div>
             
@@ -8,4 +10,4 @@ function News(props) {
     );
 }
 
-export default News;
+export default UserInformation;
