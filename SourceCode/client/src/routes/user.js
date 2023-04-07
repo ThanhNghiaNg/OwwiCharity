@@ -15,6 +15,9 @@ const routes = [
     path: "/register",
     element: <AuthForm isLogin={false} />,
   },
+  {
+path:"/login",
+  }
 ];
 
 const userRoutes = routes.map((route) => (
