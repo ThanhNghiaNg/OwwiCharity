@@ -1,15 +1,24 @@
 import { Route } from "react-router-dom";
 import Home from "../pages/Home";
+import AuthForm from "../components/AuthForm/AuthForm";
 
 const routes = [
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <AuthForm isLogin={true} />,
+  },
+  {
+    path: "/register",
+    element: <AuthForm isLogin={false} />,
   },
 ];
 
-const  userRoutes = routes.map((route) => (
+const userRoutes = routes.map((route) => (
   <Route key={new Date().getTime()} path={route.path} element={route.element} />
 ));
 
-export default userRoutes
+export default userRoutes;

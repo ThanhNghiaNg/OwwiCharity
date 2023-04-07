@@ -1,6 +1,6 @@
 import React from 'react';
 
-function News(props) {
+function Project(props) {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function News(props) {
     );
 }
 
-export default News;
+export default Project;
