@@ -6,7 +6,7 @@ const { localeStrToDate } = require("../utils/global");
 
 exports.getAllProjects = async (req, res, next) => {
   try {
-    const query = req.query.q.toLowerCase();
+    const query = req.query.q;
     const projects = await Project.find().populate([
       { path: "category", select: "name" },
       { path: "partner", select: "name" },

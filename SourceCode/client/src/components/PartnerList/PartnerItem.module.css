@@ -1,0 +1,14 @@
+.item{
+    display: flex;
+    grid-template-columns: 1fr 4fr;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+.avt{
+    display: flex;
+    align-items: center;
+}
+.avt img{
+    width: 100%;
+    max-width: 10rem;
+}

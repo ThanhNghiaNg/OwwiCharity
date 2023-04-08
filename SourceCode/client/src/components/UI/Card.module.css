@@ -1,0 +1,9 @@
+.card {
+  border-radius: 6px;
+  border: solid 1px #ccc;
+}
+
+.card:hover {
+  box-shadow: 1px 5px 5px #ccc;
+  transition: 0.5s box-shadow ease-in;
+}
