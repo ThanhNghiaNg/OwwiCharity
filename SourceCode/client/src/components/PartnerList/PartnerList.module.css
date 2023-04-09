@@ -5,6 +5,12 @@
   padding: 0;
 }
 
-.list li{
-    list-style: none;
+.list li {
+  list-style: none;
+}
+
+@media (max-width: 768px) {
+  .list {
+    grid-template-columns: 1fr;
+  }
 }

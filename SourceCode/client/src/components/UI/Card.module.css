@@ -5,5 +5,5 @@
 
 .card:hover {
   box-shadow: 1px 5px 5px #ccc;
-  transition: 0.5s box-shadow ease-in;
+  transition: 0.15s box-shadow ease-in;
 }

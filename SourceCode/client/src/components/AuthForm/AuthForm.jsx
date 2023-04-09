@@ -31,7 +31,7 @@ function AuthForm(props) {
   });
   return (
     <Form onSubmit={submitHanlder} className={classes.form}>
-      <Form.Group>
+      <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
         <Form.Control
           type="email"
@@ -39,7 +39,7 @@ function AuthForm(props) {
           required
         ></Form.Control>
       </Form.Group>
-      <Form.Group>
+      <Form.Group className="mb-3">
         <Form.Label>Email</Form.Label>
         <Form.Control
           type="password"
@@ -49,7 +49,7 @@ function AuthForm(props) {
       </Form.Group>
       {isLoading && <p className="text-center">Loading...</p>}
       {error && <p className="text-center text-danger">{error}</p>}
-      <Form.Group>
+      <Form.Group className="mb-3">
         <Button type="submit" disabled={isLoading}>
           {isLoading ? "Loading..." : isLogin ? "Login" : "Register"}
         </Button>

@@ -4,8 +4,8 @@ import Projects from '../pages/Projects'
 import ProjectDetail from '../pages/ProjectDetail'
 import Partners from '../pages/Partners'
 import PartnerDetail from "../pages/PartnerDetail";
-import UserProfile from '../pages/UserProfile'
 import { Route } from "react-router-dom";
+import AuthForm from "../components/AuthForm/AuthForm";
 
 const routes = [
   {
@@ -33,9 +33,14 @@ const routes = [
     element: <ProjectDetail />,
   },
   {
-    path: "/user",
-    element: <UserProfile />,
+    path: "/login",
+    element: <AuthForm isLogin={true} />,
   },
+  {
+    path: "/register",
+    element: <AuthForm isLogin={false} />,
+  },
+  
 ];
 
 

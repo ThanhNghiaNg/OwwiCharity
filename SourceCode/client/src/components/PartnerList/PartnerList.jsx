@@ -18,7 +18,7 @@ function PartnerList(props) {
   ));
   return (
     <div>
-      <h2>Các đối tác đồng hành</h2>
+      <h2 className="my-4">Các đối tác đồng hành</h2>
       <ul className={classes.list}>{partnerListContent}</ul>
     </div>
   );
