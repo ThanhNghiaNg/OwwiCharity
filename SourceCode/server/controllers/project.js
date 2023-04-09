@@ -6,15 +6,15 @@ const { localeStrToDate } = require("../utils/global");
 
 exports.getAllProjects = async (req, res, next) => {
   try {
-    const query = req.query.q.toLowerCase();
+    const query = req.query.q ? req.query.q.toLowerCase() : "";
     const projects = await Project.find().populate([
       { path: "category", select: "name" },
-      { path: "partner", select: "name" },
+      { path: "partner", select: ["name", "avatar"] },
     ]);
     const filteredProject = projects.filter(
       (proj) =>
-        proj.title.toLowerCase().includes(query.toLowerCase()) ||
-        proj._id.toString().toLowerCase().includes(query.toLowerCase())
+        proj.title.toLowerCase().includes(query) ||
+        proj._id.toString().toLowerCase().includes(query)
     );
     return res.send(filteredProject);
   } catch (err) {
@@ -63,7 +63,7 @@ exports.createProject = async (req, res, next) => {
       return res.status(201).send({ message: "Create Project!" });
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return res.status(500).send({ error: "Server Error" });
   }
 };

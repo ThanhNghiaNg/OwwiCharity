@@ -1,0 +1,12 @@
+.news__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .news__list {
+    grid-template-columns: 1fr;
+  }
+}

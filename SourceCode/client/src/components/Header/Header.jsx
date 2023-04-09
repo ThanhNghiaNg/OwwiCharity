@@ -25,6 +25,9 @@ function Header() {
             <Nav.Link as={Link} to="/projects">
               Các dự án quyên góp
             </Nav.Link>
+            <Nav.Link as={Link} to="/partners">
+              Đối tác đồng hành
+            </Nav.Link>
             <Nav.Link as={Link} to="/news">
               Tin tức cộng đồng
             </Nav.Link>

@@ -7,9 +7,6 @@ const userController = require("../controllers/user")
 const router = express.Router()
 
 // -------------------- PROJECT 
-// GET ALL PROJECT
-router.get("/projects", projectController.getAllProjects);
-
 // POST CREATE PROJECT
 router.post("/project", projectController.createProject);
 
@@ -34,9 +31,6 @@ router.get("/transaction/:id", transactionController.getTransaction);
 router.put("/transaction/:id", transactionController.updateTransaction);
 
 // -------------------- PARTNER 
-// GET ALL PARTNERS
-router.get("/partners", partnerController.getAllPartners);
-
 // POST CREATE PARTNER
 router.post("/partner/create", partnerController.createPartner);
 

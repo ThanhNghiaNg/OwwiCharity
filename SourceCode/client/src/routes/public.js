@@ -1,7 +1,13 @@
 import Home from "../pages/Home";
 import News from "../pages/News";
+import Projects from '../pages/Projects'
+import ProjectDetail from '../pages/ProjectDetail'
+import Partners from '../pages/Partners'
+import PartnerDetail from "../pages/PartnerDetail";
+import { Route } from "react-router-dom";
+import AuthForm from "../components/AuthForm/AuthForm";
 
-export default publicRoute = [
+const routes = [
   {
     path: "/",
     element: <Home />,
@@ -11,7 +17,7 @@ export default publicRoute = [
     element: <News />,
   },
   {
-    path: "/partner/detail:id",
+    path: "/partner/detail/:id",
     element: <PartnerDetail />,
   },
   {
@@ -19,15 +25,27 @@ export default publicRoute = [
     element: <Partners />,
   },
   {
-    path: "/news",
-    element: <News />,
+    path: "/projects",
+    element: <Projects />,
   },
   {
-    path: "/news",
-    element: <News />,
+    path: "/project/detail/:id",
+    element: <ProjectDetail />,
   },
   {
-    path: "/news",
-    element: <News />,
+    path: "/login",
+    element: <AuthForm isLogin={true} />,
   },
+  {
+    path: "/register",
+    element: <AuthForm isLogin={false} />,
+  },
+  
 ];
+
+
+const publicRoutes = routes.map((route) => (
+  <Route key={new Date().getTime()} path={route.path} element={route.element} />
+));
+
+export default publicRoutes;

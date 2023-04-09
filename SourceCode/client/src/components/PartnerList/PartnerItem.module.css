@@ -1,0 +1,25 @@
+.item {
+  display: flex;
+  grid-template-columns: 1fr 4fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.item:hover {
+  color: inherit;
+}
+
+.item__desc p {
+  margin: 0;
+}
+
+.item__avt {
+  display: flex;
+  align-items: center;
+}
+.item__avt img {
+  width: 100%;
+  max-width: 6rem;
+}
