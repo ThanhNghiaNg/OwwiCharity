@@ -22,7 +22,7 @@ exports.postLogin = (req, res, next) => {
         if (doMatch) {
           req.session.isLoggedIn = true;
           req.session.user = user;
-          if (role.includes(user.role)) {
+          if (user.isAdmin || role === (user.isAdmin ? "admin" : "user")) {
             return res.send({
               message: "Succeffly Login!",
               token: user._id,
@@ -41,9 +41,8 @@ exports.postLogin = (req, res, next) => {
       res.status(500).send({ message: err.message });
     });
 };
-exports.postSignup = (req, res, next) => {
-  const { username, password, fullName, email, phone, address, avatar } =
-    req.body;
+exports.postRegister = (req, res, next) => {
+  const { username, password, fullName, phone } = req.body;
 
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -54,12 +53,9 @@ exports.postSignup = (req, res, next) => {
     .then((hashPassword) => {
       const newUser = new User({
         username,
-        email,
-        fullName,
         password: hashPassword,
+        fullName,
         phone,
-        address,
-        avatar,
         isAdmin: false,
       });
       return newUser.save().then((user) => {

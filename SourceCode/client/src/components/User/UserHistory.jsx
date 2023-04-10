@@ -1,8 +1,6 @@
-
-
 import React from 'react';
 
-function UserBlockAccount(props) {
+function UserHistory(props) {
     return (
         <div>
             
@@ -10,4 +8,4 @@ function UserBlockAccount(props) {
     );
 }
 
-export default UserBlockAccount;
+export default UserHistory;

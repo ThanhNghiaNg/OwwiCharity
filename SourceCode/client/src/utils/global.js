@@ -1,5 +1,10 @@
 export const serverUrl = "http://localhost:5000";
-
+export const USER_TAB = {
+  INFORMATION: "/user/information",
+  PASSWORD: "/user/password",
+  HISTORY: "/user/history",
+  BLOCK: "/user/block"
+};
 export const shortHeadID = (id, numLastCharacters) => {
   const len = id.length;
   return "..." + id.substring(len - numLastCharacters);
