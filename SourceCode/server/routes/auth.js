@@ -1,3 +1,4 @@
+const User = require("../models/User");
 const authController = require("../controllers/auth");
 const isAuth = require("../middlewares/isAuthUser");
 const { body } = require("express-validator/check");
@@ -9,15 +10,13 @@ router.get("/authenticated", authController.getAuthenticated);
 router.post(
   "/login",
   [
-    body("email", "Invalid Email!")
-      .isEmail()
-      .custom((value, { req }) => {
-        return User.findOne({ email: value }).then((user) => {
-          if (!user) {
-            throw new Error("User is not Signed up!");
-          }
-        });
-      }),
+    body("username").custom((value, { req }) => {
+      return User.findOne({ username: value }).then((user) => {
+        if (!user) {
+          return Promise.reject("User is not Signed up!");
+        }
+      });
+    }),
     body(
       "password",
       "Password must not contain special characters and have at least 6 characters!"
@@ -28,29 +27,33 @@ router.post(
   authController.postLogin
 );
 router.post(
-  "/sign-up",
+  "/register",
   [
-    body("email", "Invalid Email!").isEmail(),
-    body("email").custom((value, { req }) => {
-      return User.findOne({ email: value }).then((user) => {
+    // body("email", "Invalid Email!").isEmail(),
+    body("username", "Username must have at least 6 characters").isLength({
+      min: 6,
+    }),
+    body("username").custom((value, { req }) => {
+      return User.findOne({ username: value }).then((user) => {
         if (user) {
-          throw new Error("Email is already signed up!");
+          return Promise.reject("Email is already registered!");
         }
       });
     }),
+    body(
+      "password",
+      "Password must not contain special characters and have at least 6 characters!"
+    )
+      .isAlphanumeric()
+      .isLength({ min: 6 }),
     body("fullName", "Name must have at least 3 characters").isLength({
       min: 3,
     }),
-    body(
-      "password",
-      "Password must not contain special characters and have at least 5 characters!"
-    )
-      .isAlphanumeric()
-      .isLength({ min: 5 }),
+
     body("phone", "Phone must not be empty!").isLength({ min: 1 }),
     body("phone", "Phone must be numeric only!").isNumeric(),
   ],
-  authController.postSignup
+  authController.postRegister
 );
 
 router.post("/logout", isAuth, authController.postLogout);

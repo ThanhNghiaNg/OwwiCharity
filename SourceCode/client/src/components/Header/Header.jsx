@@ -2,12 +2,23 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import classes from "./Header.module.css";
+import { USER_TAB, serverUrl } from "../../utils/global";
+import useHttp from "../../hooks/useHttp";
+import { authActions } from "../../store/authSlice";
 
 function Header() {
-  const logoutHandler = () => {};
+  const { sendRequest } = useHttp();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    sendRequest({ url: `${serverUrl}/logout`, method: "POST" }, () => {
+      dispatch(authActions.logout());
+      navigate("/login");
+    });
+  };
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <Navbar bg="light" expand="lg">
@@ -38,13 +49,13 @@ function Header() {
             )}
             {isLoggedIn && (
               <NavDropdown title="Cá nhân" id="basic-nav-dropdown">
-                <NavDropdown.Item as={Link} to="/user/information">
+                <NavDropdown.Item as={Link} to={USER_TAB.INFORMATION}>
                   Thông tin
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/user/password/change">
+                <NavDropdown.Item as={Link} to={USER_TAB.PASSWORD}>
                   Đổi mật khẩu
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/user/history">
+                <NavDropdown.Item as={Link} to={USER_TAB.HISTORY}>
                   Lịch sử quyên góp
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

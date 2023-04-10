@@ -1,9 +1,22 @@
 import { Route } from "react-router-dom";
-import UserProfile from '../pages/UserProfile'
+import UserProfile from "../pages/UserProfile";
+import { USER_TAB } from "../utils/global";
 
 const routes = [
   {
-    path: "/user",
+    path: USER_TAB.INFORMATION,
+    element: <UserProfile />,
+  },
+  {
+    path: USER_TAB.PASSWORD,
+    element: <UserProfile />,
+  },
+  {
+    path: USER_TAB.HISTORY,
+    element: <UserProfile />,
+  },
+  {
+    path: USER_TAB.BLOCK,
     element: <UserProfile />,
   },
 ];
