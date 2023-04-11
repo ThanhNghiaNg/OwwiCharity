@@ -2,10 +2,12 @@ const Project = require("../models/Project");
 const Category = require("../models/Category");
 const Partner = require("../models/Partner");
 const mongoose = require("mongoose");
-const { localeStrToDate } = require("../utils/global");
+const { localeStrToDate, getPagingResult } = require("../utils/global");
 
 exports.getAllProjects = async (req, res, next) => {
   try {
+    const page = req.query.page ? req.query.page : 1;
+    const pageSize = req.query.pageSize ? req.query.pageSize : 8;
     const query = req.query.q ? req.query.q.toLowerCase() : "";
     const projects = await Project.find().populate([
       { path: "category", select: "name" },
@@ -16,7 +18,7 @@ exports.getAllProjects = async (req, res, next) => {
         proj.title.toLowerCase().includes(query) ||
         proj._id.toString().toLowerCase().includes(query)
     );
-    return res.send(filteredProject);
+    return res.send(getPagingResult(filteredProject, page, pageSize));
   } catch (err) {
     console.log(err);
     return res.status(500).send({ error: "Server Error" });
