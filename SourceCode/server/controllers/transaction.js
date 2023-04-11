@@ -1,7 +1,10 @@
 const Transaction = require("../models/Transaction");
+const { getPagingResult } = require("../utils/global");
 
 exports.getAllTransactions = async (req, res, next) => {
   try {
+    const page = req.query.page ? page : 1;
+    const pageSize = req.query.pageSize ? pageSize : 8;
     const query = req.query.q.toLowerCase();
     console.log(query);
     const transactions = await Transaction.find().populate([
@@ -17,8 +20,7 @@ exports.getAllTransactions = async (req, res, next) => {
         trans.project.title.toLowerCase().includes(query) ||
         trans._id.toString().includes(query)
     );
-    console.log(filteredTransaction);
-    return res.send(filteredTransaction);
+    return res.send(getPagingResult(filteredTransaction, page, pageSize));
   } catch (err) {
     console.log(err);
     return res.status(500).send({ error: "Server Error" });
