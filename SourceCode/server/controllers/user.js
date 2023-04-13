@@ -1,10 +1,13 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator/check");
+const { getPagingResult } = require("../utils/global");
 
 exports.getAllUser = async (req, res, next) => {
   try {
     const query = req.query.q.toLowerCase();
+    const page = req.query.page ? req.query.page : 1;
+    const pageSize = req.query.pageSize ? req.query.pageSize : 8;
     const users = await User.find();
     const usersInfos = users
       .map((user) => {
@@ -17,7 +20,7 @@ exports.getAllUser = async (req, res, next) => {
           user.username.toLowerCase().includes(query) ||
           user.email.toLowerCase().includes(query)
       );
-    return res.send(usersInfos);
+    return res.send(getPagingResult(usersInfos, page, pageSize));
   } catch (err) {
     console.log(err);
   }

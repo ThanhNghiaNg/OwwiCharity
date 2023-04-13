@@ -3,8 +3,8 @@ const { getPagingResult } = require("../utils/global");
 
 exports.getAllTransactions = async (req, res, next) => {
   try {
-    const page = req.query.page ? page : 1;
-    const pageSize = req.query.pageSize ? pageSize : 8;
+    const page = req.query.page ? req.query.page : 1;
+    const pageSize = req.query.pageSize ? req.query.pageSize : 8;
     const query = req.query.q.toLowerCase();
     console.log(query);
     const transactions = await Transaction.find().populate([

@@ -6,6 +6,10 @@ exports.getAllPartners = async (req, res, next) => {
     const page = req.query.page ? req.query.page : 1;
     const pageSize = req.query.pageSize ? req.query.pageSize : 8;
     const partners = await Partner.find();
+    console.log(req.url);
+    if (req.session.user.isAdmin && req.url.include("admin")) {
+      return res.send(partners);
+    }
     return res.send(getPagingResult(partners, page, pageSize));
   } catch (err) {
     console.log(err);

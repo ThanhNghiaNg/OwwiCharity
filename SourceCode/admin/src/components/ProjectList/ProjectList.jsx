@@ -1,10 +1,36 @@
 import classes from "./ProjectList.module.css";
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ProjectItem from "./ProjectItem";
 import Table from "../Table/Table";
+import useHttp from "../../hooks/useHttp";
+import { serverUrl } from "../../utils/global";
 
-function ProjectList({ projects, onReload, changeReload }) {
+function ProjectList({ query }) {
+  const { sendRequest, isLoading } = useHttp();
+  const [data, setData] = useState({});
+  const [reload, setReload] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
+  const changeReloadHandler = () => {
+    setReload((prev) => !prev);
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query]);
+
+  useEffect(() => {
+    sendRequest(
+      {
+        url: `${serverUrl}/projects?q=${query}&page=${currentPage}&pageSize=${pageSize}`,
+      },
+      (data) => {
+        setData(data);
+      }
+    );
+  }, [query, reload, currentPage]);
+
   const headers = [
     "ID",
     "Title",
@@ -19,12 +45,15 @@ function ProjectList({ projects, onReload, changeReload }) {
   return (
     <>
       <Table
+        isLoading={isLoading}
         headers={headers}
-        data={projects}
+        data={data.data}
         TableItem={ProjectItem}
-        onReload={onReload}
-        onChangeReload={changeReload}
-        pageSize={10}
+        onChangeReload={changeReloadHandler}
+        onChangePage={setCurrentPage}
+        page={currentPage}
+        pageSize={pageSize}
+        totalItems={data.totalItems}
       />
     </>
   );

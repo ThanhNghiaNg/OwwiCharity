@@ -1,60 +1,55 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import Pagination from "react-bootstrap/Pagination";
+import { Pagination } from "antd";
+import CenterSpin from "../UI/CenterSpin";
 
 function Table(props) {
-  const { headers, data, TableItem, onReload, onChangeReload, pageSize } = props;
-  const [activePage, setActivePage] = useState(1);
-  let items = [];
+  const {
+    headers,
+    data,
+    TableItem,
+    onChangeReload,
+    onChangePage,
+    pageSize,
+    isLoading,
+    totalItems,
+    page,
+  } = props;
 
-  useEffect(() => {
-    setActivePage(1);
-  }, [onReload]);
-  for (
-    let number = 1;
-    number <= Math.ceil(data.length / pageSize);
-    number++
-  ) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        active={number === activePage}
-        onClick={() => {
-          setActivePage(number);
-        }}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
+  const changePageHandler = (page, pageSize) => {
+    onChangePage(page);
+  };
 
-  const contentTbody = data
-    .slice((activePage - 1) * pageSize, activePage * pageSize)
-    .map((item, i) => {
-      return (
-        <TableItem
-          key={i}
-          item={item}
-          onChangeReload={onChangeReload}
-        />
-      );
+  let contentTbody;
+  if (data) {
+    contentTbody = data.map((item, i) => {
+      return <TableItem key={i} item={item} onChangeReload={onChangeReload} />;
     });
+  }
 
   return (
     <>
       <table className={`table`}>
         <thead>
           <tr>
-            {headers.map((header) => (
-              <th>{header}</th>
+            {headers.map((header, i) => (
+              <th key={i}>{header}</th>
             ))}
           </tr>
         </thead>
-        <tbody>{contentTbody}</tbody>
+        <tbody>{!isLoading && contentTbody}</tbody>
       </table>
-      <div className="d-flex justify-content-end">
-        <Pagination>{items}</Pagination>
-      </div>
+      {isLoading && <CenterSpin />}
+      {!isLoading && (
+        <div className="d-flex justify-content-end">
+          <Pagination
+            defaultCurrent={page}
+            onChange={changePageHandler}
+            total={totalItems ? totalItems : 0}
+            pageSize={pageSize}
+          />
+        </div>
+      )}
     </>
   );
 }
