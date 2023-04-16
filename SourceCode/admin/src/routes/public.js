@@ -1,10 +1,8 @@
 import { Route } from "react-router-dom";
 import Login from "../pages/Login";
-import Register from "../pages/Register";
 
 const items = [
-  { path: "/login", element: <Login/>, name: "Login" },
-  { path: "/register", element: <Register/>, name: "Register" },
+  { path: "/login", element: <Login />, name: "Login" },
   { path: "*", element: <p>Page not found</p>, name: "other" },
 ];
 const publicRoutes = items.map((item) => (

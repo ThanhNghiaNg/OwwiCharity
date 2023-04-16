@@ -31,21 +31,13 @@ function AuthForm(props) {
     console.log(obj);
     sendRequest(
       {
-        url: `${serverUrl}/${isLogin ? "login" : "register"}`,
+        url: `${serverUrl}/login`,
         method: "POST",
         body: JSON.stringify({ ...obj, role: "admin" }),
       },
       (data) => {
-        if (!isLogin) {
-          setSuccess("Register Successfully!");
-          setTimeout(() => {
-            setSuccess("");
-          }, 3000);
-          navigate("/login");
-        } else {
-          dispatch(authActions.login({ token: data.token, name: data.name }));
-          navigate("/");
-        }
+        dispatch(authActions.login({ token: data.token, name: data.name }));
+        navigate("/");
       }
     );
   };
@@ -77,28 +69,7 @@ function AuthForm(props) {
             required
           ></Form.Control>
         </Form.Group>
-        {!isLogin && (
-          <>
-            <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your full name"
-                name="fullName"
-                required
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your phone number"
-                name="phone"
-                required
-              ></Form.Control>
-            </Form.Group>
-          </>
-        )}
+
         <div className="text-center">
           {isLoading && <Spin size="md" />}
           {error && <p className="text-danger">{error}</p>}
@@ -108,13 +79,6 @@ function AuthForm(props) {
           <Button type="submit" disabled={isLoading}>
             {isLoading ? "Loading..." : isLogin ? "Login" : "Register"}
           </Button>
-          {!isLoading && (
-            <>
-              <span> or </span>
-              {!isLogin && <Link to={"/login"}>login.</Link>}
-              {isLogin && <Link to={"/register"}>register now.</Link>}
-            </>
-          )}
         </Form.Group>
       </Form>
     </div>
