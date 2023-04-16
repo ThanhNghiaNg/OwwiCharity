@@ -3,6 +3,7 @@ import Projects from "../pages/Projects";
 import CreateProject from "../pages/CreateProject";
 import UpdateProject from "../pages/UpdateProject";
 import Users from "../pages/Users";
+import News from "../pages/News";
 import Transactions from "../pages/Transactions";
 
 const items = [
@@ -30,6 +31,11 @@ const items = [
     path: "/users",
     element: <Users />,
     name: "Users",
+  },
+  {
+    path: "/news",
+    element: <News />,
+    name: "News",
   },
   { path: "*", element: <p>test</p>, name: "other" },
 ];
