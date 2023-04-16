@@ -13,7 +13,7 @@ router.get("/projects", projectController.getAllProjects);
 router.get("/partners", partnerController.getAllPartners);
 
 // -------------------- PARTNER 
-// GET ALL PARTNERS
+// GET ALL NEWS
 router.get("/news", newsController.getAllNews);
 
 module.exports = router

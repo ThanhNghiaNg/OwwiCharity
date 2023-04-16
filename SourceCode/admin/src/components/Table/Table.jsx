@@ -10,6 +10,7 @@ function Table(props) {
     TableItem,
     onChangeReload,
     onChangePage,
+    onChangePageSize,
     pageSize,
     isLoading,
     totalItems,
@@ -17,6 +18,9 @@ function Table(props) {
   } = props;
 
   const changePageHandler = (page, pageSize) => {
+    if (onChangePageSize){
+      onChangePageSize(pageSize)
+    }
     onChangePage(page);
   };
 

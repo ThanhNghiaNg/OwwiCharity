@@ -38,6 +38,8 @@ function useHttp() {
       }
       setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
       console.log(err);
     }
   };

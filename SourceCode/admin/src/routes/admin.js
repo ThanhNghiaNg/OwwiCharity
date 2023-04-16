@@ -3,6 +3,7 @@ import Projects from "../pages/Projects";
 import CreateProject from "../pages/CreateProject";
 import UpdateProject from "../pages/UpdateProject";
 import Users from "../pages/Users";
+import News from "../pages/News";
 import Transactions from "../pages/Transactions";
 
 const items = [
@@ -31,7 +32,11 @@ const items = [
     element: <Users />,
     name: "Users",
   },
-  { path: "*", element: <p>test</p>, name: "other" },
+  {
+    path: "/news",
+    element: <News />,
+    name: "News",
+  },
 ];
 const adminRoutes = items.map((item) => {
   return <Route path={item.path} element={item.element} key={item.name} />;
