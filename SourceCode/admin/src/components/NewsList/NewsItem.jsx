@@ -24,8 +24,8 @@ function NewsItem({ item, onChangeReload }) {
   };
   return (
     <tr>
-      <td>{item._id}</td>
-      <td>{item.title}</td>
+      <td>{shortHeadID(item._id,10)}</td>
+      <td>{shortStr(item.title, 30)}</td>
       <td>{item.location}</td>
       <td>{item.sponsor}</td>
       <td>{item.partner.name}</td>
