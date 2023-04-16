@@ -110,9 +110,12 @@ function ProductForm(props) {
         setImages(data.images);
       });
     }
+
     getPartners({ url: `${serverUrl}/admin/partners` }, (data) => {
+      console.log(data)
       setPartners(data);
     });
+
     getCategories({ url: `${serverUrl}/admin/categories` }, (data) => {
       setCategories(data);
     });
