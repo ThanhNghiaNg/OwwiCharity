@@ -37,7 +37,6 @@ const items = [
     element: <News />,
     name: "News",
   },
-  { path: "*", element: <p>test</p>, name: "other" },
 ];
 const adminRoutes = items.map((item) => {
   return <Route path={item.path} element={item.element} key={item.name} />;
