@@ -1,5 +1,4 @@
 import Home from "../pages/Home";
-import News from "../pages/News";
 import Projects from '../pages/Projects'
 import ProjectDetail from '../pages/ProjectDetail'
 import Partners from '../pages/Partners'
@@ -11,10 +10,6 @@ const routes = [
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/news",
-    element: <News />,
   },
   {
     path: "/partner/detail/:id",

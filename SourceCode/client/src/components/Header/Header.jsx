@@ -20,6 +20,7 @@ function Header() {
     });
   };
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -38,9 +39,6 @@ function Header() {
             </Nav.Link>
             <Nav.Link as={Link} to="/partners">
               Đối tác đồng hành
-            </Nav.Link>
-            <Nav.Link as={Link} to="/news">
-              Tin tức cộng đồng
             </Nav.Link>
             {!isLoggedIn && (
               <Nav.Link as={Link} to="/login">
