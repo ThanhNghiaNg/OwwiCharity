@@ -22,6 +22,7 @@ function PartnerList(props) {
     sendRequest(
       { url: `${serverUrl}/partners?page=${page}&&pageSize=${pageSize}` },
       (data) => {
+        console.log(data);
         setData((prev) => prev.concat(data.data));
         if (page === data.totalPages) {
           setHideSeeMoreBtn(true);
@@ -29,9 +30,9 @@ function PartnerList(props) {
       }
     );
   }, [reload]);
-  const partnerListContent = data.map((partner) => (
-    <PartnerItem item={partner} key={partner._id} />
-  ));
+  const partnerListContent = data.map((partner, i) => {
+    return <PartnerItem item={partner} key={partner._id} />;
+  });
   return (
     <div>
       <h2 className="my-4">Các đối tác đồng hành</h2>

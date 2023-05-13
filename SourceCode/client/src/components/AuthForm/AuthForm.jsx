@@ -23,7 +23,6 @@ function AuthForm(props) {
     setSuccess,
   } = useHttp();
 
-  console.log("twice");
   const submitHanlder = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -50,12 +49,6 @@ function AuthForm(props) {
       }
     );
   };
-
-  useEffect(() => {
-    return () => {
-      //   cancelRequest();
-    };
-  });
 
   return (
     <div className={classes.background}>
