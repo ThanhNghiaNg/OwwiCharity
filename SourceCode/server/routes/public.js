@@ -7,6 +7,10 @@ const router = express.Router()
 // GET ALL PROJECT
 router.get("/projects", projectController.getAllProjects);
 
+// -------------------- PROJECT
+// GET ALL PROJECT
+router.get("/project/:id", projectController.getProject);
+
 // -------------------- PARTNER 
 // GET ALL PARTNERS
 router.get("/partners", partnerController.getAllPartners);
