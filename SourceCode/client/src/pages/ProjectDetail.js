@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import ProjectDetailComponent from '../components/ProjectDetail/ProjectDetail'
 
 function ProjectDetail(props) {
-    return (
-        <div>
-            1111
-        </div>
-    );
+  return (
+    <div>
+      <ProjectDetailComponent />
+    </div>
+  );
 }
 
 export default ProjectDetail;
