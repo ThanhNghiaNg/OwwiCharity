@@ -10,7 +10,7 @@ import Button from "react-bootstrap/esm/Button";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 import { Link } from "react-router-dom";
 
-function ProjectList({ isSidebar }) {
+function ProjectList({ isSidebar, title }) {
   const { sendRequest, isLoading } = useHttp();
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
@@ -49,8 +49,8 @@ function ProjectList({ isSidebar }) {
 
   return (
     <Container>
-      {isSidebar && (
-        <p className="fs-4 fw-bold my-4">Hoàn cảnh quyên góp mới nhất</p>
+      {title && (
+        <p className="fs-4 fw-bold my-4">{title}</p>
       )}
       {isLoading && (
         <div className="my-5 text-center">

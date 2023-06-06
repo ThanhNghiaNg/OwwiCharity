@@ -1,0 +1,21 @@
+.donation_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info_detail {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.infor_detail__item p {
+  margin-bottom: 0;
+  /* font-weight: bold; */
+  font-size: 14px;
+  width: fit-content;
+}
+.infor_detail__item p:nth-child(1) {
+  width: max-content;
+  color: #d6d6d6;
+}

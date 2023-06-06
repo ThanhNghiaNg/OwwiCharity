@@ -11,7 +11,7 @@ function Partners(props) {
           <PartnerList />
         </div>
         <div className="d-none d-lg-block col">
-          <ProjectList isSidebar={true} />
+          <ProjectList isSidebar={true} title="Hoàn cảnh quyên góp mới nhất" />
         </div>
       </div>
     </Container>

@@ -1,10 +1,11 @@
 import React from "react";
 import PartnerDetailComponent from "../components/PartnerDetail/PartnerDetail";
+import Container from "react-bootstrap/esm/Container";
 function PartnerDetail(props) {
   return (
-    <div>
+    <Container>
       <PartnerDetailComponent />
-    </div>
+    </Container>
   );
 }
 
