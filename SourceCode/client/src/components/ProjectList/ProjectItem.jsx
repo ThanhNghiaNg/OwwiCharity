@@ -20,7 +20,7 @@ function ProjectItem({ item }) {
           <div className={classes.item__partner}>
             <img src={item.partner.avatar} alt="" />
             <p className="">{item.partner.name}</p>
-            <p className={classes.item__partner__remain}>Còn {dayRemain} ngày</p>
+            <p className={classes.item__partner__remain}>Còn {dayRemain > 0 ? dayRemain : 0} ngày</p>
           </div>
         </div>
       </Link>
