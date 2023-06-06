@@ -5,7 +5,7 @@ const InfiniteScroll = forwardRef((props, ref) => {
   const [hideSeeMoreBtn, setHideSeeMoreBtn] = useState(false);
   const pageSize = props.pageSize ? props.pageSize : 8;
   const onReload = props.onReload;
-  const buttonInfinity = props.buttonInfinity
+  const buttonInfinity = props.buttonInfinity;
   const increasePageHandler = () => {
     setPage((page) => page + 1);
     if (onReload) {
@@ -22,11 +22,11 @@ const InfiniteScroll = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     getPageInfo,
   }));
-
+  console.log("isload: ", props.isLoading);
   return (
     <React.Fragment>
       {props.children}
-      {buttonInfinity && buttonInfinity}
+      {buttonInfinity && !hideSeeMoreBtn && !props.isLoading && buttonInfinity}
       {!buttonInfinity && !hideSeeMoreBtn && (
         <div className="text-center">
           <button

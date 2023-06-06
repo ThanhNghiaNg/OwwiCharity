@@ -11,12 +11,12 @@ exports.getAuthenticated = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-  const { email, password, role } = req.body;
+  const { username, password, role } = req.body;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).send({ message: errors.array()[0].msg });
   }
-  User.findOne({ email })
+  User.findOne({ username })
     .then((user) => {
       return bcrypt.compare(password, user.password).then((doMatch) => {
         if (doMatch) {
@@ -49,7 +49,7 @@ exports.postRegister = (req, res, next) => {
     return res.status(422).send({ message: errors.array()[0].msg });
   }
   bcrypt
-    .hash(password, 12)
+    .hash(password, 10)
     .then((hashPassword) => {
       const newUser = new User({
         username,

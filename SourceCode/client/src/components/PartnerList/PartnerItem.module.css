@@ -18,6 +18,8 @@
 .item__avt {
   display: flex;
   align-items: center;
+  max-width: 7rem;
+  min-width: 7rem;
 }
 .item__avt img {
   width: 100%;

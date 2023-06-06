@@ -11,7 +11,12 @@ function Partners(props) {
           <PartnerList />
         </div>
         <div className="d-none d-lg-block col">
-          <ProjectList isSidebar={true} title="Hoàn cảnh quyên góp mới nhất" />
+          <ProjectList
+            isSidebar={true}
+            title="Hoàn cảnh quyên góp mới nhất"
+            pageSize={4}
+            useSeeAllButton={true}
+          />
         </div>
       </div>
     </Container>

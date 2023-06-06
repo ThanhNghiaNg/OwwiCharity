@@ -11,7 +11,7 @@ function DonationInfo(props) {
       <p>
         <span className="fw-bold fs-4">3.696.684đ</span> quyên góp / 67.000.000đ
       </p>
-      <ProgressBar now={60} striped />
+      <ProgressBar now={Math.random() * 100} striped />
       <div className={classes.info_detail}>
         <div className={classes.infor_detail__item}>
           <p>Lượt quyên góp</p>

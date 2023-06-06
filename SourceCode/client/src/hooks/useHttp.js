@@ -7,7 +7,7 @@ function useHttp() {
   const [isAborted, setIsAborted] = useState(false);
   const controller = new AbortController();
 
-  const sendRequest = async (config, callback) => {
+  const sendRequest = async (config, onSuccessed, onFailed) => {
     try {
       setIsLoading(true);
       setError(null);
@@ -26,11 +26,11 @@ function useHttp() {
       const data = await respone.json();
 
       if (respone.status >= 200 && respone.status < 300) {
-        if (callback) {
+        if (onSuccessed) {
           if (data.message) {
             setSuccess(data.message);
           }
-          callback(data);
+          onSuccessed(data);
         }
       } else {
         if (data.message) {
@@ -40,6 +40,7 @@ function useHttp() {
       setIsLoading(false);
     } catch (err) {
       console.log(err);
+      onFailed?.();
       if (!isAborted) setError(err.message);
       setIsLoading(false);
       setIsAborted(false);
