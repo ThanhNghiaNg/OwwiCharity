@@ -1,0 +1,5 @@
+.header {
+  position: -webkit-sticky !important;
+  position: sticky;
+  top: 0;
+}

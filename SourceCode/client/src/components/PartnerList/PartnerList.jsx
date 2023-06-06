@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useHttp from "../../hooks/useHttp";
 import { serverUrl } from "../../utils/global";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
@@ -29,12 +30,28 @@ function PartnerList(props) {
       }
     );
   }, [reload]);
-  const partnerListContent = data.map((partner) => (
-    <PartnerItem item={partner} key={partner._id} />
-  ));
+  const partnerListContent = data.map((partner, i) => {
+    return <PartnerItem item={partner} key={partner._id} />;
+  });
+
+  const buttonInfinity = (
+    <div className="text-center">
+      <Link to={"/partners"} className="btn btn-outline-primary">
+        See all
+      </Link>
+    </div>
+  );
+
+  const listStyle = {
+    gridTemplateColumns: Array(props.gridColumn ? props.gridColumn : 2)
+      .fill("1fr")
+      .join(" "),
+  };
   return (
     <div>
-      <h2 className="my-4">Các đối tác đồng hành</h2>
+      <h2 className={`my-4 ${props.useSeeAllButton ? "text-center" : ""}`}>
+        Các đối tác đồng hành
+      </h2>
       {isLoading && (
         <div className="my-5 text-center">
           <Spin size="lg" />
@@ -44,9 +61,12 @@ function PartnerList(props) {
         onReload={reloadHandler}
         ref={scrollRef}
         isLoading={isLoading}
-        pageSize={12}
+        pageSize={props.pageSize ? props.pageSize : 12}
+        buttonInfinity={props.useSeeAllButton ? buttonInfinity : null}
       >
-        <ul className={classes.list}>{partnerListContent}</ul>
+        <ul className={classes.list} style={listStyle}>
+          {partnerListContent}
+        </ul>
       </InfiniteScroll>
     </div>
   );

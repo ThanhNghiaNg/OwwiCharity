@@ -1,11 +1,12 @@
 :root {
+  --primary-dark-background: #262626;
 }
 ul {
   padding: 0;
   margin: 0;
 }
 a {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 li {
   list-style: none;

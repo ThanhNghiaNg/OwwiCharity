@@ -3,14 +3,12 @@ import React, { useState, useEffect, useRef } from "react";
 import useHttp from "../../hooks/useHttp";
 import { serverUrl } from "../../utils/global";
 import ProjectItem from "./ProjectItem";
-import ProjectBanner from "./ProjectBanner";
 import Container from "react-bootstrap/esm/Container";
 import { Spin } from "antd";
-import Button from "react-bootstrap/esm/Button";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 import { Link } from "react-router-dom";
 
-function ProjectList({ isSidebar }) {
+function ProjectList({ isSidebar, title, pageSize, useSeeAllButton }) {
   const { sendRequest, isLoading } = useHttp();
   const [data, setData] = useState([]);
   const [reload, setReload] = useState(false);
@@ -22,6 +20,7 @@ function ProjectList({ isSidebar }) {
   useEffect(() => {
     const { page, pageSize, setHideSeeMoreBtn } =
       scrollRef.current.getPageInfo();
+
     sendRequest(
       { url: `${serverUrl}/projects?page=${page}&&pageSize=${pageSize}` },
       (respone) => {
@@ -29,15 +28,20 @@ function ProjectList({ isSidebar }) {
         if (page === respone.totalPages) {
           setHideSeeMoreBtn(true);
         }
+      },
+      () => {
+        setHideSeeMoreBtn(true);
       }
     );
   }, [reload]);
 
-  let projectListContent = <p className="text-center">Data not found!</p>;
+  let projectListContent;
   if (data.length > 0) {
     projectListContent = data.map((project) => (
       <ProjectItem item={project} key={project._id} />
     ));
+  } else if (!isLoading) {
+    projectListContent = <p className="text-center">Data not found!</p>;
   }
   const buttonInfinity = (
     <div className="text-center">
@@ -49,9 +53,7 @@ function ProjectList({ isSidebar }) {
 
   return (
     <Container>
-      {isSidebar && (
-        <p className="fs-4 fw-bold my-4">Hoàn cảnh quyên góp mới nhất</p>
-      )}
+      {title && <p className="fs-4 fw-bold my-4 text-center">{title}</p>}
       {isLoading && (
         <div className="my-5 text-center">
           <Spin size="lg" />
@@ -61,7 +63,8 @@ function ProjectList({ isSidebar }) {
         onReload={reloadHandler}
         ref={scrollRef}
         isLoading={isLoading}
-        buttonInfinity={isSidebar ? buttonInfinity : null}
+        buttonInfinity={useSeeAllButton ? buttonInfinity : null}
+        pageSize={pageSize ? pageSize : 8}
       >
         <ul
           className={`${

@@ -57,6 +57,7 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
+      name: 'appnodejs',
       maxAge: 1000 * 3600 * 24, // 1 day
     },
   })

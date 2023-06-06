@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import ProjectDetailComponent from "../components/ProjectDetail/ProjectDetail";
+import Container from "react-bootstrap/esm/Container";
 
 function ProjectDetail(props) {
-    return (
-        <div>
-            1111
-        </div>
-    );
+  return (
+    <Container>
+      <ProjectDetailComponent />
+    </Container>
+  );
 }
 
 export default ProjectDetail;
