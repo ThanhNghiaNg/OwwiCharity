@@ -15,6 +15,7 @@ import { useRef } from "react";
 function ProjectDetail(props) {
   const id = useParams().id;
   const [data, setData] = useState(null);
+  const [activeTab, setActiveTab] = useState("Situation");
   const { sendRequest: getProjectDetail, isLoading } = useHttp();
 
   const donorsRef = useRef();
@@ -32,18 +33,16 @@ function ProjectDetail(props) {
       {isLoading && <CustomSpin className="mt-4" />}
       {data && (
         <>
-          <div id="HoanCanh" ref={situationRef}>
+          <div id="Situation" ref={situationRef}>
             <h2>{data.title}</h2>
             <p>{data.shortDesc}</p>
           </div>
-          <ul>
-            <li>
+          <ul className={`${classes.scrollTab}`}>
+            <li className={activeTab === "Situation" ? classes.activeTab : ""}>
               <button
                 onClick={() => {
-                  console.log(situationRef.current);
-                  // situationRef.current.scrollIntoView({ behavior: "smooth" });
+                  setActiveTab("Situation");
                   const { top } = situationRef.current.getBoundingClientRect();
-                  console.log(top, window.pageYOffset, situationRef);
                   window.scrollTo({
                     top: top + window.pageYOffset - 16 * 4,
                     behavior: "smooth",
@@ -53,9 +52,10 @@ function ProjectDetail(props) {
                 Hoàn cảnh
               </button>
             </li>
-            <li>
+            <li className={activeTab === "Story" ? classes.activeTab : ""}>
               <button
                 onClick={() => {
+                  setActiveTab("Story");
                   const { top } = storyRef.current.getBoundingClientRect();
                   window.scrollTo({
                     top: top + window.pageYOffset - 16 * 4,
@@ -66,19 +66,13 @@ function ProjectDetail(props) {
                 Câu chuyện
               </button>
             </li>
-            <li>
+            <li className={activeTab === "Donors" ? classes.activeTab : ""}>
               <button
                 onClick={() => {
-                  // donorsRef.current.scrollIntoView({ behavior: "smooth" });
+                  setActiveTab("Donors");
                   const { top } = donorsRef.current.getBoundingClientRect();
-                  console.log(
-                    top + window.pageYOffset - 16 * 4,
-                    top,
-                    window.pageYOffset,
-                    donorsRef
-                  );
                   window.scrollTo({
-                    top: top - 20,
+                    top: top + window.pageYOffset - 16 * 4,
                     behavior: "smooth",
                   });
                 }}
@@ -88,11 +82,12 @@ function ProjectDetail(props) {
             </li>
           </ul>
           <Row>
-            <Col lg={8} className={`order-2 order-lg-1 ${classes.height100}`}>
+            <Col lg={8} className={`order-2 order-lg-1`}>
               <Row
                 id="CauChuyen"
                 dangerouslySetInnerHTML={{ __html: data.story }}
                 ref={storyRef}
+                className={classes.height100}
               ></Row>
               <Row ref={donorsRef}>
                 <DonorList />
