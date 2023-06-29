@@ -10,6 +10,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const adminRoutes = require("./routes/admin");
 const publicRoutes = require("./routes/public");
+const transactionRoutes = require("./routes/transaction")
 
 require("dotenv").config();
 
@@ -109,6 +110,7 @@ app.use((req, res, next) => {
 
 app.use(authRoutes);
 app.use(publicRoutes);
+app.use(transactionRoutes)
 app.use("/user", userRoutes);
 app.use("/admin", adminRoutes);
 

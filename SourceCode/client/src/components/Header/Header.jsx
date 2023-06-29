@@ -20,7 +20,6 @@ function Header() {
     });
   };
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
   return (
     <div className={classes.header}>
       <Navbar bg="light" expand="lg">

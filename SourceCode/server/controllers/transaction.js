@@ -29,7 +29,29 @@ exports.getAllTransactions = async (req, res, next) => {
 
 exports.getTransaction = async (req, res, next) => {};
 
-exports.createTransaction = async (req, res, next) => {};
+exports.createTransaction = async (req, res, next) => {
+  try {
+    const { amount, message, projectId } = req.body;
+    const userId = req.session.user._id;
+    if ((req.session.user.balance || 0) < amount) {
+      return res
+        .status(422)
+        .send({ message: "User do not have enough money!" });
+    }
+
+    const newTransaction = await new Transaction({
+      amount,
+      message,
+      project: projectId,
+      user: userId,
+    });
+    await newTransaction.save();
+    return res.send({ message: "Successfully Create Transaction!" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ error: "Server Error" });
+  }
+};
 
 exports.deleteTransaction = async (req, res, next) => {};
 

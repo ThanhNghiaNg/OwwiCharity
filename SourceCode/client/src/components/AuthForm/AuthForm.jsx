@@ -1,5 +1,5 @@
 import classes from "./AuthForm.module.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import useHttp from "../../hooks/useHttp";

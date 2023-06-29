@@ -1,10 +1,11 @@
 import classes from "./DonationInfo.module.css";
 import Card from "../UI/Card";
 import React from "react";
-import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import { Link } from "react-router-dom";
 
-function DonationInfo(props) {
+function DonationInfo({projectId}) {
+
   return (
     <Card className={`p-4 ${classes.donation_info}`}>
       <h5 className="fs-4">Thông tin quyên góp</h5>
@@ -26,7 +27,9 @@ function DonationInfo(props) {
           <p>265</p>
         </div>
       </div>
-      <Button className="w-100">Quyên góp</Button>
+      <Link to={`/donation/${projectId}`} className="btn btn-primary w-100">
+        Quyên góp
+      </Link>
     </Card>
   );
 }

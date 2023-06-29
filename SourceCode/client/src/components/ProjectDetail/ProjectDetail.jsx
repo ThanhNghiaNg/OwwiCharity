@@ -95,7 +95,7 @@ function ProjectDetail(props) {
             </Col>
             <Col lg={4} className={`order-1 order-lg-2 ${classes.height100}`}>
               <Row>
-                <DonationInfo />
+                <DonationInfo projectId={id} />
               </Row>
               <Row className="d-none d-lg-block">
                 <ProjectList

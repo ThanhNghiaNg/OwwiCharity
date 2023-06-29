@@ -57,6 +57,7 @@ exports.postRegister = (req, res, next) => {
         fullName,
         phone,
         isAdmin: false,
+        balance: 0,
       });
       return newUser.save().then((user) => {
         return res.status(201).send({ message: "Sign-up Successfully!" });
